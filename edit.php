@@ -2,7 +2,7 @@
 require 'config.php';
 
 $redis = new Redis();
-$redis->connect($host, 6379);
+$redis->connect($host, $port);
 if ($password)
 	$redis->auth($password);
 
