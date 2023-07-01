@@ -1,0 +1,4 @@
+*.sh text eol=lf
+.docker/**/*.conf* text eol=lf
+.docker/**/*.cnf* text eol=lf
+.docker/**/*.ini* text eol=lf

@@ -1,0 +1,25 @@
+{
+	"editor.insertSpaces": false,
+	// https://code.visualstudio.com/docs/containers/docker-compose#_command-customization
+	"docker.commands.composeUp": [
+		{
+			"label": "Compose Up (override)",
+			"template": "${composeCommand} -f docker-compose.yml ${configurationFile} up ${detached} ${build}",
+			"match": ".override|.dev|.prod"
+		}
+	],
+	"docker.commands.composeDown": [
+		{
+			"label": "Compose Down (override)",
+			"template": "${composeCommand} -f docker-compose.yml ${configurationFile} down",
+			"match": ".override|.dev|.prod"
+		}
+	],
+	"docker.commands.composeUpSubset": [
+		{
+			"label": "Compose Up (override)",
+			"template": "${composeCommand} -f docker-compose.yml ${configurationFile} up ${detached} ${build} ${serviceList}",
+			"match": ".override|.dev|.prod"
+		}
+	]
+}

@@ -1,0 +1,10 @@
+services:
+  redis-admin:
+    build:
+      context: ./
+    ports:
+      - ${HOST_PORT}:80
+    environment:
+      - REDIS_HOST
+      - REDIS_PORT
+      - REDIS_PASSWORD

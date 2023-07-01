@@ -1,0 +1,12 @@
+services:
+  redis-admin:
+    build:
+      context: ./
+      args:
+        BUILD_ENV: development
+    volumes:
+      - ./:/var/www/html
+      - ./.docker/php/conf.d/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini
+    environment:
+      - XDEBUG_REMOTE_HOST
+      - XDEBUG_REMOTE_PORT
