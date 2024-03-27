@@ -10,3 +10,10 @@ services:
     environment:
       - XDEBUG_REMOTE_HOST
       - XDEBUG_REMOTE_PORT
+  redis: # Redis instance for testing
+    image: redis:5-alpine
+    volumes:
+      - redis_data:/data
+
+volumes:
+  redis_data:
