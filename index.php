@@ -46,8 +46,17 @@ if (!empty($_GET['q'])) {
 <code>
 	<?php foreach ($keys as $key): ?>
 		<span style="color: blue;"><?php echo $key; ?></span>
-		<?php echo $redis->get($key); ?>
-		<span style="color: blue;">TTL: <?php echo $redis->ttl($key); ?></span>
+		<?php if ($redis->type($key) == Redis::REDIS_LIST): ?>
+			<span style="color: blue;">(list) TTL: <?php echo $redis->ttl($key); ?></span>
+			<?php if ($items = $redis->lrange($key, 0, -1)): ?>
+				<?php foreach($items as $item): ?>
+					<br><span style="color: blue;">-</span> <?php echo $item; ?>
+				<?php endforeach; ?>
+			<?php endif; ?>
+		<?php else: ?>
+			<?php echo $redis->get($key); ?>
+			<span style="color: blue;">TTL: <?php echo $redis->ttl($key); ?></span>
+		<?php endif; ?>
 		<br>
 	<?php endforeach; ?>
 </code>

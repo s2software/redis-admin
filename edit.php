@@ -20,13 +20,29 @@ if (!empty($_POST['save']) && !empty($_POST['key']))
 	$value = $_POST['value'];
 	$ttl = $_POST['ttl'] ? (int)$_POST['ttl'] : NULL;
 	$unlink = $_POST['unlink'] ?? FALSE;
+	$lPush = $_POST['lPush'] ?? FALSE;
+	$rPush = $_POST['rPush'] ?? FALSE;
 	if ($unlink)
 	{
 		$unlinked = $redis->unlink($key);
 	}
 	else
 	{
-		$saved = $redis->set($key, $value, $ttl);
+		if ($lPush || $rPush)
+		{
+			if ($lPush)
+				$saved = $redis->lPush($key, $value);
+			if ($rPush)
+				$saved = $redis->rPush($key, $value);
+			if (is_numeric($ttl))
+				$redis->expire($key, $ttl);
+			else
+				$redis->persist($key);
+		}
+		else
+		{
+			$saved = $redis->set($key, $value, $ttl);
+		}
 	}
 }
 ?>
@@ -72,7 +88,11 @@ if (!empty($_POST['save']) && !empty($_POST['key']))
 	<br><br>
 	<input type="text" name="ttl" placeholder="TTL" value="<?php echo @$ttl ?>" style="width: 3rem;">
 	<br><br>
-	<label><input type="checkbox" name="unlink" value="1" <?php echo @$unlink?'checked':''?>> Unlink Key (select to remove key)</label>
+	<label><input type="checkbox" name="unlink" value="1" <?php echo @$unlink?'checked':''?>> Unlink (select to remove key)</label>
+	<br>
+	<label><input type="checkbox" name="lPush" value="1" <?php echo @$lPush?'checked':''?>> lPush (select to lPush to key)</label>
+	<br>
+	<label><input type="checkbox" name="rPush" value="1" <?php echo @$rPush?'checked':''?>> rPush (select to rPush to key)</label>
 	<br><br>
 	<input type="submit" name="save" value="Save" style="font-size: 1rem; font-weight: bold;">
 </form>
