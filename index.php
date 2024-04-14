@@ -1,5 +1,5 @@
 <?php
-require 'config.php';
+require_once 'includes/config.php';
 
 $redis = new Redis();
 $redis->connect($host, $port);
@@ -27,6 +27,7 @@ if (!empty($_GET['q'])) {
 	<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 </head>
 <body>
+<?php require 'includes/header.php'; ?>
 
 <form method="get" autocomplete="off">
 	<input type="text" name="db" value="<?php echo $db; ?>" placeholder="db" style="width: 2rem;">

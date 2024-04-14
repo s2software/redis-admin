@@ -1,5 +1,5 @@
 <?php
-require 'config.php';
+require_once 'includes/config.php';
 
 $redis = new Redis();
 $redis->connect($host, $port);
@@ -54,6 +54,7 @@ if (!empty($_POST['save']) && !empty($_POST['key']))
 	<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 </head>
 <body>
+<?php require 'includes/header.php'; ?>
 
 <h3>Insert/Update Key</h3>
 
