@@ -1,2 +1,7 @@
 .*
-!.docker
+#!.docker
+
+docker-compose*
+Dockerfile*
+
+/build-push.sh
