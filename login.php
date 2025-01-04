@@ -1,5 +1,6 @@
 <?php
 require_once 'includes/config.php';
+require_once 'includes/functions.php';
 if (!$login)
 {
 	exit('Login disabled - set .env REDIS_LOGIN=1 to enable login screen');
@@ -36,6 +37,9 @@ if (!empty($_POST['login']))
 	<meta charset="utf-8">
 	<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 	<style>
+		.release {
+			float: right;
+		}
 		form input {
 			margin-bottom: 0.25rem;
 		}
@@ -43,7 +47,12 @@ if (!empty($_POST['login']))
 </head>
 <body>
 
+<div class="release">
+	v.<?=release()?>
+</div>
+
 <h3>Redis Admin - Login</h3>
+
 
 <form method="post">
 	<input type="text" name="host" value="<?php echo @$host; ?>" placeholder="Host" style="width: 15rem;">

@@ -1,5 +1,6 @@
 <?php
 require_once 'includes/config.php';
+require_once 'includes/functions.php';
 
 // Connection Data from Login screen
 if ($login)
