@@ -1,5 +1,5 @@
 <?php
-require_once 'includes/config.php';
+require_once 'includes/init.php';
 
 $redis = new Redis();
 $redis->connect($host, $port);

@@ -1,5 +1,5 @@
 <?php
-require_once 'config.php';
+require_once 'init.php';
 ?>
 <div id="header">
 	<?php echo $host; ?>:<?php echo $port; ?>

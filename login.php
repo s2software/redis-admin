@@ -1,5 +1,6 @@
 <?php
-if (!getenv('REDIS_LOGIN'))
+require_once 'includes/config.php';
+if (!$login)
 {
 	exit('Login disabled - set .env REDIS_LOGIN=1 to enable login screen');
 }
